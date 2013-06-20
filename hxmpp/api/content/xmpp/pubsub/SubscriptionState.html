@@ -1,0 +1,6 @@
+<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">enum </span>xmpp.pubsub.SubscriptionState</div><div class="classdoc"></div><dl><dt>none</dt><dd>The node MUST NOT send event notifications or payloads to the Entity.</dd><dt>pending</dt><dd>An entity has requested to subscribe to a node and the request has not yet been approved by a node owner.
+		The node MUST NOT send event notifications or payloads to the entity while it is in this state.</dd><dt>unconfigured</dt><dd>An entity has subscribed but its subscription options have not yet been configured.
+		The node MAY send event notifications or payloads to the entity while it is in this state.
+		The service MAY timeout unconfigured subscriptions.</dd><dt>subscribed</dt><dd>An entity is subscribed to a node.
+		The node MUST send all event notifications (and, if configured, payloads) to the entity while it is in this state
+		(subject to subscriber configuration and content filtering).</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a></body></html>

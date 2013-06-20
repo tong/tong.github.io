@@ -1,0 +1,14 @@
+<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">enum </span>xmpp.dataform.FieldType</div><dl><dt>boolean</dt><dd>The field enables an entity to gather or provide an either-or choice between two options.
+		The default value is "false".</dd><dt>fixed</dt><dd>The field is intended for data description (e.g., human-readable text such as "section" headers) rather than data gathering or provision.
+		The <value/> child SHOULD NOT contain newlines (the \n and \r characters);
+		instead an application SHOULD generate multiple fixed fields, each with one <value/> child.</dd><dt>hidden</dt><dd>The field is not shown to the form-submitting entity, but instead is returned with the form.
+		The form-submitting entity SHOULD NOT modify the value of a hidden field,
+		but MAY do so if such behavior is defined for the "using protocol".</dd><dt>jid_multi</dt><dd>The field enables an entity to gather or provide multiple Jabber IDs.
+		Each provided JID SHOULD be unique (as determined by comparison that includes application of the Nodeprep, Nameprep, and Resourceprep profiles of Stringprep as specified in XMPP Core),
+		and duplicate JIDs MUST be ignored.</dd><dt>jid_single</dt><dd>The field enables an entity to gather or provide a single Jabber ID.</dd><dt>list_multi</dt><dd>The field enables an entity to gather or provide one or more options from among many.
+		A form-submitting entity chooses one or more items from among the options presented by the form-processing entity and MUST NOT insert new options.
+		The form-submitting entity MUST NOT modify the order of items as received from the form-processing entity,
+		since the order of items MAY be significant.</dd><dt>list_single</dt><dd>The field enables an entity to gather or provide one option from among many.
+		A form-submitting entity chooses one item from among the options presented by the form-processing entity and MUST NOT insert new options.</dd><dt>text_multi</dt><dd>The field enables an entity to gather or provide multiple lines of text.</dd><dt>text_private</dt><dd>The field enables an entity to gather or provide a single line or word of text,
+		which shall be obscured in an interface (e.g., with multiple instances of the asterisk character).</dd><dt>text_single</dt><dd>The field enables an entity to gather or provide a single line or word of text, which may be shown in an interface.
+		This field type is the default and MUST be assumed if a form-submitting entity receives a field type it does not understand.</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a></body></html>
