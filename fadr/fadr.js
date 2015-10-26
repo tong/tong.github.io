@@ -26,12 +26,19 @@ var fadr_App = function(settings) {
 };
 fadr_App.prototype = {
 	init: function() {
+		var _g = this;
 		this.view.start();
 		this.menuToggle.addEventListener("click",$bind(this,this.handleSettingsToggleClick),false);
 		window.document.body.addEventListener("dblclick",$bind(this,this.handleDoubleClickBody),false);
 		window.document.body.addEventListener("contextmenu",$bind(this,this.handleContextMenu),false);
 		window.document.body.addEventListener("mousemove",$bind(this,this.handleMouseMove),false);
 		this.timer = new haxe_Timer(2500);
+		window.document.getElementById("title").onclick = function(_) {
+			_g.toggleGUI();
+		};
+	}
+	,toggleGUI: function() {
+		if(this.menu.toggle()) this.footer.style.opacity = "1"; else this.footer.style.opacity = "0";
 	}
 	,handleDoubleClickBody: function(e) {
 	}
@@ -40,7 +47,7 @@ fadr_App.prototype = {
 	}
 	,handleSettingsToggleClick: function(e) {
 		e.preventDefault();
-		if(this.menu.toggle()) this.footer.style.opacity = "1"; else this.footer.style.opacity = "0";
+		this.toggleGUI();
 	}
 	,handleMouseMove: function(e) {
 		window.document.body.style.cursor = "default";
@@ -63,9 +70,6 @@ var fadr_SettingsMenu = function(view,settings) {
 	var _g = this;
 	this.view = view;
 	this.element = window.document.getElementById("settings");
-	this.element.addEventListener("transitionend",function(e) {
-		_g.element.style.display = _g.element.style.opacity == "0"?"none":"inline-block";
-	});
 	var section = window.document.getElementById("settings-fade");
 	this.fadeDuration = new fadr_gui_Slider("fade-duration",settings.fadeDuration,0,10000,100," ms");
 	this.fadeDuration.onChange = function(v) {
@@ -101,11 +105,11 @@ var fadr_SettingsMenu = function(view,settings) {
 };
 fadr_SettingsMenu.prototype = {
 	show: function() {
-		this.element.style.opacity = "1";
+		this.element.style.display = "block";
 		this.isVisible = true;
 	}
 	,hide: function() {
-		this.element.style.opacity = "0";
+		this.element.style.display = "none";
 		this.isVisible = false;
 	}
 	,toggle: function() {
@@ -293,7 +297,14 @@ fadr_web_App.main = function() {
 };
 fadr_web_App.__super__ = fadr_App;
 fadr_web_App.prototype = $extend(fadr_App.prototype,{
-	toggleFullscreen: function() {
+	handleDoubleClickBody: function(e) {
+		this.toggleFullscreen();
+	}
+	,handleContextMenu: function(e) {
+		fadr_App.prototype.handleContextMenu.call(this,e);
+		this.toggleGUI();
+	}
+	,toggleFullscreen: function() {
 		if(this.isFullscreen) {
 			window.document.webkitExitFullscreen();
 			this.isFullscreen = false;
@@ -301,9 +312,6 @@ fadr_web_App.prototype = $extend(fadr_App.prototype,{
 			window.document.body.webkitRequestFullscreen();
 			this.isFullscreen = true;
 		}
-	}
-	,handleDoubleClickBody: function(e) {
-		this.toggleFullscreen();
 	}
 });
 var js_Browser = function() { };
